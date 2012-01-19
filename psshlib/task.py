@@ -75,6 +75,7 @@ class Task(object):
         # Set up the environment.
         environ = dict(os.environ)
         environ['PSSH_NODENUM'] = str(nodenum)
+        environ['PSSH_HOST'] = self.host
         # Disable the GNOME pop-up password dialog and allow ssh to use
         # askpass.py to get a provided password.  If the module file is
         # askpass.pyc, we replace the extension.
