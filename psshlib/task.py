@@ -64,6 +64,11 @@ class Task(object):
             self.inline = bool(opts.inline)
         except AttributeError:
             self.inline = False
+        try:
+            self.inline_stdout = bool(opts.inline_stdout)
+        except AttributeError:
+            self.inline_stdout = False
+
 
     def start(self, nodenum, iomap, writer, askpass_socket=None):
         """Starts the process and registers files with the IOMap."""
@@ -183,7 +188,7 @@ class Task(object):
         try:
             buf = os.read(fd, BUFFER_SIZE)
             if buf:
-                if self.inline:
+                if self.inline or self.inline_stdout:
                     self.outputbuffer += buf
                 if self.outfile:
                     self.writer.write(self.outfile, buf)

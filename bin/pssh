@@ -33,7 +33,10 @@ def option_parser():
     parser.epilog = "Example: pssh -h hosts.txt -l irb2 -o /tmp/foo uptime"
 
     parser.add_option('-i', '--inline', dest='inline', action='store_true',
-            help='inline aggregated output for each server')
+            help='inline aggregated output and error for each server')
+    parser.add_option('--inline-stdout', dest='inline_stdout',
+            action='store_true',
+            help='inline standard output for each server')
     parser.add_option('-I', '--send-input', dest='send_input',
             action='store_true',
             help='read from standard input and send as input to ssh')
@@ -98,7 +101,7 @@ def do_pssh(hosts, cmdline, opts):
     for status in statuses:
         if status != 0:
             sys.exit(5)
-   
+
 if __name__ == "__main__":
     opts, args = parse_args()
     cmdline = " ".join(args)
