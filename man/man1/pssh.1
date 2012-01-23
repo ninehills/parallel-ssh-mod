@@ -63,9 +63,15 @@ is a program for executing ssh in parallel on a number of hosts.  It provides
 features such as sending input to all of the processes, passing a password
 to ssh, saving output to files, and timing out.
 
-The PSSH_NODENUM environment variable is set in the remote ssh environment.
-This variable is assigned a unique number for each ssh connection, starting
-with 0 and counting up.
+The PSSH_NODENUM and PSSH_HOST environment variables are sent to the remote
+host.  The PSSH_NODENUM variable is assigned a unique number for each ssh
+connection, starting with 0 and counting up.  The PSSH_HOST variable is
+assigned the name of the host as specified in the hosts list.  Note that sshd
+drops environment variables by default, so sshd_config on the remote host must
+include the line:
+.RS
+AcceptEnv PSSH_NODENUM PSSH_HOST
+.RE
 
 .SH OPTIONS
 
