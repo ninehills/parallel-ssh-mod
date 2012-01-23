@@ -69,7 +69,6 @@ class Task(object):
         except AttributeError:
             self.inline_stdout = False
 
-
     def start(self, nodenum, iomap, writer, askpass_socket=None):
         """Starts the process and registers files with the IOMap."""
         self.writer = writer
