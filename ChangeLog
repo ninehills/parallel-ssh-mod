@@ -1,3 +1,13 @@
+2012-01-24 Andrew McNabb <amcnabb at mcnabbs.org>
+	* Version 2.3
+	  - Added a --inline-stdout option (issue #57).  Thanks to
+	    pablo.barbachano for the patch.
+	  - Added a PSSH_HOST environment variable (issue #62).
+	  - Added a --version option (issues #33 and #45).
+	  - Expanded the pssh man page and added man pages for all other
+	    commands (issues #10 and #55).
+	  - Fixed askpass on Mac OS X 10.6.7 (issue #50).
+	  - Many other small fixes.
 2011-02-02 Andrew McNabb <amcnabb at mcnabbs.org>
 	* Version 2.2.2
 	  - Fixed two crashes (issues 35 and 36).  One affects Python <= 2.5
