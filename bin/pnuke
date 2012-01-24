@@ -74,8 +74,11 @@ def do_pnuke(hosts, pattern, opts):
         # At least one process was killed.
         sys.exit(3)
     for status in statuses:
-        if status != 0:
+        if status == 255:
             sys.exit(4)
+    for status in statuses:
+        if status != 0:
+            sys.exit(5)
 
 if __name__ == "__main__":
     opts, args = parse_args()
