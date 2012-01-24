@@ -1,4 +1,4 @@
-# Copyright (c) 2009, Andrew McNabb
+# Copyright (c) 2009-2012, Andrew McNabb
 
 from errno import EINTR
 import os

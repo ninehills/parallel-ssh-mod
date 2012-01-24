@@ -1,4 +1,4 @@
-# Copyright (c) 2009, Andrew McNabb
+# Copyright (c) 2009-2012, Andrew McNabb
 # Copyright (c) 2003-2008, Brent N. Chun
 
 import fcntl

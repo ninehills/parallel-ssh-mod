@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- Mode: python -*-
 
-# Copyright (c) 2009, Andrew McNabb
+# Copyright (c) 2009-2012, Andrew McNabb
 # Copyright (c) 2003-2008, Brent N. Chun
 
 """Nukes all processes that match pattern running as user on the set of nodes
@@ -24,7 +24,7 @@ _DEFAULT_TIMEOUT = 60
 
 def option_parser():
     parser = common_parser()
-    parser.usage = "%prog [OPTIONS] -h hosts.txt pattern"
+    parser.usage = "%prog [OPTIONS] pattern"
     parser.epilog = "Example: pnuke -h hosts.txt -l irb2 java"
     return parser
 
