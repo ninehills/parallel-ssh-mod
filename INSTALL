@@ -1,6 +1,9 @@
 Installing PSSH
 ===============
 
+PSSH is supported on Python 2.4 and greater (including Python 3.1 and
+greater).
+
 If you don't already have setuptools installed:
 
   # wget 'http://peak.telecommunity.com/dist/ez_setup.py'
