@@ -1,3 +1,7 @@
+2012-02-02 Andrew McNabb <amcnabb at mcnabbs.org>
+	* Version 2.3.1
+	  - Fixed a problem where man pages were omitted from the tar file.
+	  - Note that this release makes no changes to the programs.
 2012-01-24 Andrew McNabb <amcnabb at mcnabbs.org>
 	* Version 2.3
 	  - Added a --inline-stdout option (issue #57).  Thanks to
