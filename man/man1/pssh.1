@@ -311,10 +311,11 @@ alias pssh_servers="pssh -h /path/to/server_list.txt -l root -A"
 .RE
 
 .PP
-Note that when an ssh command is terminated, it does not appear to kill remote
-processes.  One workaround is to instruct ssh to allocate a pseudo-terminal,
-which makes it behave more like a normal interactive ssh session.  To do
-this, use pssh's "-x" option to pass "-t" to ssh.  For example:
+Note that when an ssh command is terminated, it does not kill remote processes
+(OpenSSH bug #396 has been open since 2002).  One workaround is to instruct
+ssh to allocate a pseudo-terminal, which makes it behave more like a normal
+interactive ssh session.  To do this, use pssh's "-x" option to pass "-t" to
+ssh.  For example:
 .RS
 pssh -i -x "-t" -h hosts.txt -t 10 sleep 1000
 .RE
