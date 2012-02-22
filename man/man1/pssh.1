@@ -314,10 +314,10 @@ alias pssh_servers="pssh -h /path/to/server_list.txt -l root -A"
 Note that when an ssh command is terminated, it does not kill remote processes
 (OpenSSH bug #396 has been open since 2002).  One workaround is to instruct
 ssh to allocate a pseudo-terminal, which makes it behave more like a normal
-interactive ssh session.  To do this, use pssh's "-x" option to pass "-t" to
+interactive ssh session.  To do this, use pssh's "-x" option to pass "-tt" to
 ssh.  For example:
 .RS
-pssh -i -x "-t" -h hosts.txt -t 10 sleep 1000
+pssh -i -x "-tt" -h hosts.txt -t 10 sleep 1000
 .RE
 will ensure that all of the sleep commands will terminate (with SIGHUP) after
 the 10 second timeout.
@@ -326,7 +326,7 @@ the 10 second timeout.
 By default, ssh uses full buffering for non-interactive commands.  Line
 buffering may be preferrable to full buffering if you intend to look at the
 files in an output directory as a command is running.  To switch ssh to use
-line buffering, use its "-t" option (which allocates a pseudo-terminal) using
+line buffering, use its "-tt" option (which allocates a pseudo-terminal) using
 the "-x" option in pssh.
 
 .PP
