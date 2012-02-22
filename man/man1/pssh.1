@@ -323,6 +323,13 @@ will ensure that all of the sleep commands will terminate (with SIGHUP) after
 the 10 second timeout.
 
 .PP
+By default, ssh uses full buffering for non-interactive commands.  Line
+buffering may be preferrable to full buffering if you intend to look at the
+files in an output directory as a command is running.  To switch ssh to use
+line buffering, use its "-t" option (which allocates a pseudo-terminal) using
+the "-x" option in pssh.
+
+.PP
 The ssh_config file can include an arbitrary number of Host sections.  Each
 host entry specifies ssh options which apply only to the given host.  Host
 definitions can even behave like aliases if the HostName option is included.

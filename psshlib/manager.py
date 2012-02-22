@@ -307,6 +307,7 @@ class Writer(threading.Thread):
                     dest.close()
                 else:
                     dest.write(data)
+                    dest.flush()
 
     def open_files(self, host):
         """Called from another thread to create files for stdout and stderr.
