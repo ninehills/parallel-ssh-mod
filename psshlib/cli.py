@@ -6,7 +6,8 @@ import os
 import shlex
 import sys
 import textwrap
-import version
+
+from . import version
 
 _DEFAULT_PARALLELISM = 32
 _DEFAULT_TIMEOUT     = 0 # "infinity" by default
