@@ -112,7 +112,7 @@ class Manager(object):
         for task in self.running:
             if task.proc:
                 task.proc.poll()
-        # Apparently some UNIX systems automatically resent the SIGCHLD
+        # Apparently some UNIX systems automatically reset the SIGCHLD
         # handler to SIG_DFL.  Reset it just in case.
         self.set_sigchld_handler()
 
