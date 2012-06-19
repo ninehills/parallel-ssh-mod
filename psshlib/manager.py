@@ -39,7 +39,7 @@ class Manager(object):
         self.askpass = opts.askpass
         self.outdir = opts.outdir
         self.errdir = opts.errdir
-        self.iomap = IOMap()
+        self.iomap = make_iomap()
 
         self.taskcount = 0
         self.tasks = []
@@ -268,6 +268,65 @@ class IOMap(object):
                 sys.stderr.write('Fatal error reading from wakeup pipe: %s\n'
                         % message)
                 raise FatalError
+
+
+class PollIOMap(IOMap):
+    """A manager for file descriptors and their associated handlers.
+
+    The poll method dispatches events to the appropriate handlers.
+    Note that `select.poll` is not available on all operating systems.
+    """
+    def __init__(self):
+        self._poller = select.poll()
+        super(PollIOMap, self).__init__()
+
+    def register_read(self, fd, handler):
+        """Registers an IO handler for a file descriptor for reading."""
+        super(PollIOMap, self).register_read(fd, handler)
+        self._poller.register(fd, select.POLLIN)
+
+    def register_write(self, fd, handler):
+        """Registers an IO handler for a file descriptor for writing."""
+        super(PollIOMap, self).register_write(fd, handler)
+        self._poller.register(fd, select.POLLOUT)
+
+    def unregister(self, fd):
+        """Unregisters the given file descriptor."""
+        super(PollIOMap, self).unregister(fd)
+        self._poller.unregister(fd)
+
+    def poll(self, timeout=None):
+        """Performs a poll and dispatches the resulting events."""
+        if not self.readmap and not self.writemap:
+            return
+        try:
+            event_list = self._poller.poll(timeout)
+        except select.error:
+            _, e, _ = sys.exc_info()
+            errno = e.args[0]
+            if errno == EINTR:
+                return
+            else:
+                raise
+        for fd, event in event_list:
+            if event & (select.POLLIN | select.POLLHUP):
+                handler = self.readmap[fd]
+                handler(fd, self)
+            if event & (select.POLLOUT | select.POLLERR):
+                handler = self.writemap[fd]
+                handler(fd, self)
+
+
+def make_iomap():
+    """Return a new IOMap or PollIOMap as appropriate.
+
+    Since `select.poll` is not implemented on all platforms, this ensures that
+    the most appropriate implementation is used.
+    """
+    if hasattr(select, 'poll'):
+        return PollIOMap()
+    else:
+        return IOMap()
 
 
 class Writer(threading.Thread):
