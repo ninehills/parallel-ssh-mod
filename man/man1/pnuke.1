@@ -217,6 +217,12 @@ definitions can even behave like aliases if the HostName option is included.
 This ssh feature, in combination with pssh host files, provides a tremendous
 amount of flexibility.
 
+.PP
+Internally uses the
+.B pkill
+command and sends signal 9 (the unblockable KILL
+signal).
+
 
 .SH EXIT STATUS
 

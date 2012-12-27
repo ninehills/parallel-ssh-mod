@@ -2,7 +2,7 @@
 .TH prsync 1 "January 24, 2012"
 
 .SH NAME
-prsync \(em parallel process kill program
+prsync \(em parallel file sync program
 
 
 .SH SYNOPSIS
@@ -37,9 +37,11 @@ prsync \(em parallel process kill program
 .SH DESCRIPTION
 .PP
 .B prsync
-is a program for copying files in parallel to a number of hosts.  It provides
-features such as passing a password to ssh, saving output to files, and timing
-out.
+is a program for copying files in parallel to a number of hosts using the
+popular
+.B rsync
+program.  It provides features such as passing a password to ssh,
+saving output to files, and timing out.
 
 
 .SH OPTIONS
