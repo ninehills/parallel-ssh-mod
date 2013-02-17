@@ -19,12 +19,13 @@ from psshlib import psshutil
 
 class PasswordServer(object):
     """Listens on a UNIX domain socket for password requests."""
-    def __init__(self):
+    def __init__(self, init_password=None):
         self.sock = None
         self.tempdir = None
         self.address = None
         self.socketmap = {}
         self.buffermap = {}
+        self.init_password = init_password
 
     def start(self, iomap, backlog):
         """Prompts for the password, creates a socket, and starts listening.
@@ -34,9 +35,12 @@ class PasswordServer(object):
         """
         message = ('Warning: do not enter your password if anyone else has'
                 ' superuser privileges or access to your account.')
-        print(textwrap.fill(message))
 
-        self.password = getpass.getpass()
+        if self.init_password:
+            self.password = self.init_password
+        else:
+            print(textwrap.fill(message))
+            self.password = getpass.getpass()
 
         # Note that according to the docs for mkdtemp, "The directory is
         # readable, writable, and searchable only by the creating user."

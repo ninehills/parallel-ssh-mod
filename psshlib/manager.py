@@ -37,6 +37,7 @@ class Manager(object):
         self.limit = opts.par
         self.timeout = opts.timeout
         self.askpass = opts.askpass
+        self.password = opts.password
         self.outdir = opts.outdir
         self.errdir = opts.errdir
         self.iomap = make_iomap()
@@ -57,8 +58,8 @@ class Manager(object):
             else:
                 writer = None
 
-            if self.askpass:
-                pass_server = PasswordServer()
+            if self.askpass or self.password:
+                pass_server = PasswordServer(self.password)
                 pass_server.start(self.iomap, self.limit)
                 self.askpass_socket = pass_server.address
 

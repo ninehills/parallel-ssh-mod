@@ -33,6 +33,8 @@ def common_parser():
             help='additional host entries ("[user@]host[:port]")')
     parser.add_option('-l', '--user', dest='user',
             help='username (OPTIONAL)')
+    parser.add_option('-w', '--password', dest='password',
+            help='password (OPTIONAL)')
     parser.add_option('-p', '--par', dest='par', type='int',
             help='max number of parallel threads (OPTIONAL)')
     parser.add_option('-o', '--outdir', dest='outdir',

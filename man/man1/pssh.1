@@ -14,6 +14,8 @@ pssh \(em parallel ssh program
 .RI [ user @] host [: port ]]
 .RB [ \-l
 .IR user ]
+.RB [ \-w
+.IR password ]
 .RB [ \-p
 .IR par ]
 .RB [ \-o
@@ -38,6 +40,8 @@ pssh \(em parallel ssh program
 .RI [ user @] host [: port ]]
 .RB [ \-l
 .IR user ]
+.RB [ \-w
+.IR password ]
 .RB [ \-p
 .IR par ]
 .RB [ \-o
@@ -127,6 +131,14 @@ option.
 .BI \-\-user " user"
 Use the given username as the default for any host entries that don't
 specifically specify a user.
+
+.TP
+.BI \-w " password"
+.PD 0
+.TP
+.BI \-\-password " password"
+Use the given password as the default for any host entries.
+
 
 .TP
 .BI \-p " parallelism"
@@ -273,6 +285,12 @@ pssh -i -h hosts.txt echo "hello, world"
 Run a command as root with a prompt for the root password:
 .RS
 pssh -i -h hosts.txt -A -l root echo hi
+.RE
+
+.PP
+Run a command as root with a given root password:
+.RS
+pssh -i -h hosts.txt -l root -w @&UDiuF echo hi
 .RE
 
 .PP
