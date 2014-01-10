@@ -8,7 +8,7 @@
 
 For each node, we essentially do a scp [-r] user@host:remote
 outdir/<node>/local.  This program also uses the -q (quiet) and -C
-(compression) options.  Note that remote must be an absolute path.
+(compression) options.
 """
 
 import os
@@ -113,9 +113,6 @@ if __name__ == "__main__":
     opts, args = parse_args()
     remote = args[0]
     local = args[1]
-    if not re.match("^/", remote):
-        print("Remote path %s must be an absolute path" % remote)
-        sys.exit(3)
     try:
         hosts = psshutil.read_host_files(opts.host_files,
             default_user=opts.user)
